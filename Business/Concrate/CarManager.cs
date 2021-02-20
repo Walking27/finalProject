@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities;
 using DataAccess.Abstract;
 using Entities.Concrate;
 using System;
@@ -30,9 +31,24 @@ namespace Business.Concrate
             return _carDal.GetAll(); 
         }
 
+        public List<Car> GetByCarId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Car GetById(int Id)
         {
             return _carDal.Get(c => c.Id == Id);
+        }
+
+        public List<CarDetailDTO> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
+
+        public List<Car> Insert(decimal min, decimal max)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)

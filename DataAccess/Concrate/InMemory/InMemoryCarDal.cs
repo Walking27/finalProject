@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Entities;
+using DataAccess.Abstract;
 using Entities.Concrate;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,16 @@ namespace DataAccess.Concrate.InMemory
         {
             _carDals = new List<Car>
             {
-                new Car{BrandId=1,Id=10,ColorId=78,DailyPrice=120.500,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=2,Id=20,ColorId=79,DailyPrice=100.000,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=3,Id=30,ColorId=80,DailyPrice=120.000,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=4,Id=40,ColorId=81,DailyPrice=180.500,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=5,Id=50,ColorId=82,DailyPrice=99.000,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=6,Id=60,ColorId=83,DailyPrice=100.750,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=7,Id=70,ColorId=84,DailyPrice=168.500,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=8,Id=80,ColorId=85,DailyPrice=125.000,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=9,Id=90,ColorId=86,DailyPrice=150.000,Description="Sahibinden satlık 0 ayarında",ModelYear=2018},
-            new Car{BrandId=10,Id=100,ColorId=87,DailyPrice=128.500,Description="Sahibinden satlık 0 ayarında",ModelYear=2018}
+                new Car{BrandId=1,Id=10,ColorId=78,DailyPrice=150,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=2,Id=20,ColorId=79,DailyPrice=100,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=3,Id=30,ColorId=80,DailyPrice=120,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=4,Id=40,ColorId=81,DailyPrice=180,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=5,Id=50,ColorId=82,DailyPrice=99,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=6,Id=60,ColorId=83,DailyPrice=100,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=7,Id=70,ColorId=84,DailyPrice=168,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=8,Id=80,ColorId=85,DailyPrice=125,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=9,Id=90,ColorId=86,DailyPrice=150,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"},
+            new Car{BrandId=10,Id=100,ColorId=87,DailyPrice=128,Description="Sahibinden satlık 0 ayarında",ModelYear="2018"}
             };
         }
 
@@ -53,12 +54,17 @@ namespace DataAccess.Concrate.InMemory
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            return _carDals;
         }
 
         public Car GetById(int Id)
         {
             return _carDals.SingleOrDefault(p => p.Id == Id);
+        }
+
+        public List<CarDetailDTO> GetCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)

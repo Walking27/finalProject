@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Core.Entities
 {
-    public interface IEntity
+    //IEntity Iplemente Eden class Bir Veri Taplosudur
+
+    public interface IEntity 
     {
     }
 }

@@ -1,9 +1,7 @@
 ﻿using Business.Concrate;
 using DataAccess.Concrate.EntityFramwork;
 using DataAccess.Concrate.InMemory;
-using Entities.Concrate;
 using System;
-
 
 namespace ConsoleUI
 {
@@ -11,13 +9,28 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var Car in carManager.GetAll())
-            {
-                Console.WriteLine(Car.Id + "/" + Car.ModelYear);
+            ProductTest();
+            //IoC
+            //CategoryTest();
+        }
 
+        private static void CategoryTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            foreach (var category in categoryManager.GetAll())
+            {
+                Console.WriteLine(category.CategoryName);
+            }
+        }
+
+        private static void ProductTest()
+        {
+            ProductManager productManager = new ProductManager(new EfProductDal());
+
+            foreach (var product in productManager.GetProductDetails())
+            {
+                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
             }
         }
     }
 }
-

@@ -9,7 +9,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductTest();
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            foreach (var category in categoryManager.GetAll())
+            {
+                Console.WriteLine(category.CategoryName);
+            }
+            //ProductTest();
             //IoC
             //CategoryTest();
         }

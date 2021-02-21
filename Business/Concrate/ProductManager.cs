@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilites.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrate.InMemory;
@@ -22,17 +23,25 @@ namespace Business.Concrate
         public IResult Add(Product product)
         {
             //business codes
+            if (product.ProductName.Length<2)
+            {
+                //magic strings
+                return new ErrorResult(Messages.ProductNameInvalid);
+            }
             _ProductDal.Get(product);
 
-            return new Result(true,"Ürün Eklendi");
+            return new SuccessResault(Messages.ProductAdded);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            //İş Kodları
-            //Yetkisi Var Mı?
+            if (DateTime.Now.Hour==22)
+            {
+                return new ErrorResult();
+            }
+            
 
-            return _ProductDal.GetAll();
+            return  new SuccessDataResult<List<Product>>(_ProductDal.GetAll(),true,"Ürünler Listelendi");
         }
 
         public List<Product> GetAllByCategoryID(int id)
@@ -53,6 +62,26 @@ namespace Business.Concrate
         public List<ProductDetailDto> GetProductDetails()
         {
             return _ProductDal.GetProductDetails();
+        }
+
+        IDataResult<List<Product>> IProductService.GetAllByCategoryID(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataResult<Product> IProductService.GetById(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataResult<List<Product>> IProductService.GetByUnitPrice(decimal min, decimal max)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataResult<List<ProductDetailDto>> IProductService.GetProductDetails()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -19,7 +19,8 @@ namespace Business.Concrate
         public List<Category> GetAll()
         {
             //İş Kodları
-            return _categoryDal.GetAll();        }
+            return _categoryDal.GetAll();        
+        }
 
         public List<Category> GetById(int categoryID)
         {

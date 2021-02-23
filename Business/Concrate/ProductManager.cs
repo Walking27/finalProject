@@ -19,7 +19,7 @@ namespace Business.Concrate
         {
             _ProductDal = productDal;
         }
-
+            
         public IResult Add(Product product)
         {
             //business codes
@@ -35,7 +35,7 @@ namespace Business.Concrate
 
         public IDataResult<List<Product>> GetAll()
         {
-            if (DateTime.Now.Hour == 22)
+            if (DateTime.Now.Hour == 15)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
             }

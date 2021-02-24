@@ -1,10 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilites.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrate.InMemory;
 using Entities.Concrate;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,15 +22,12 @@ namespace Business.Concrate
         {
             _ProductDal = productDal;
         }
-            
+
+        [ValidationAscept(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            //business codes
-            if (product.ProductName.Length < 2)
-            {
-                //magic strings
-                return new ErrorDataResult<List<Product>>(Messages.ProductNameInvalid);
-            }
+            //Business Codes
+
             _ProductDal.Get(product);
 
             return new SuccessResault(Messages.ProductAdded);

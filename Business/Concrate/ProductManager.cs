@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilites.Results;
 using DataAccess.Abstract;
@@ -17,20 +19,32 @@ namespace Business.Concrate
     public class ProductManager : IProductService
     {
         IProductDal _ProductDal;
+        ILogger _logger;
 
         public ProductManager(IProductDal productDal)
         {
             _ProductDal = productDal;
+            
         }
 
-        [ValidationAscept(typeof(ProductValidator))]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            //Business Codes
+            
+            try
+            {
+                //Business Codes
 
-            _ProductDal.Get(product);
+                _ProductDal.Get(product);
 
-            return new SuccessResault(Messages.ProductAdded);
+                return new SuccessResault(Messages.ProductAdded);
+            }
+            catch (Exception exseption)
+            {
+                _logger.Log();
+            }
+            return new ErrorResult();
+            
         }
 
         public IDataResult<List<Product>> GetAll()

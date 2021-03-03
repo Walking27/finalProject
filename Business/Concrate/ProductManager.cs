@@ -24,11 +24,12 @@ namespace Business.Concrate
             _categoryService = categoryService;
         }
 
-        
 
+        
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
+
             //Aynı isimde ürün eklenemez
             //Eğer mevcut kategori sayısı 15'i geçtiyse sisteme yeni ürün eklenemez. ve 
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName),

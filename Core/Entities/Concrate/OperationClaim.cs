@@ -1,8 +1,11 @@
-﻿namespace Core.Entities.Comcrate
+﻿using System;
+
+namespace Core.Entities.Comcrate
 {
     public class OperationClaim:IEntity
     {
         public int Id { get; set;}
-        public int Name { get; set; }
+        public string Name { get; set; }
+
     }
 }

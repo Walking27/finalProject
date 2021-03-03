@@ -6,6 +6,7 @@ using System.Text;
 using Core.DataAccess;
 using System.Linq.Expressions;
 using System.Linq;
+using Core.Entities.Comcrate;
 
 namespace Core.DataAccess.EntityFramework
 {
@@ -49,6 +50,11 @@ namespace Core.DataAccess.EntityFramework
                        ? context.Set<TEntity>().ToList()
                        : context.Set<TEntity>().Where(filter).ToList();
             }
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(TEntity entity)

@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.Comcrate;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -17,6 +18,7 @@ namespace Core.DataAccess
             void Update(T entity);
 
             void Delete(T entity);
-        }
+        List<OperationClaim> GetClaims(User user);
+    }
     }
 

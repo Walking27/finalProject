@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.Entities.Comcrate;
+using DataAccess.Abstract;
 using Entities.Concrate;
 using Entities.DTOs;
 using System;
@@ -65,6 +66,11 @@ namespace DataAccess.Concrate.InMemory
         }
 
         public void Get(Product product)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<OperationClaim> GetClaims(User user)
         {
             throw new NotImplementedException();
         }

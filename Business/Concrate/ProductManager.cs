@@ -25,7 +25,6 @@ namespace Business.Concrate
         }
 
 
-        
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {

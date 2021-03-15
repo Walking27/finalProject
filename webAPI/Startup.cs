@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrate;
+using Core.DependencyResoluvers;
+using Core.Extensions;
 using Core.Utilites.Security.Encryption;
 using Core.Utilites.Security.JWT;
 using DataAccess.Abstract;
@@ -40,6 +42,9 @@ namespace webAPI
             services.AddControllers();
             //services.AddSingleton<IProductService,ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
+
+            services.AddCors();
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -56,6 +61,11 @@ namespace webAPI
                         IssuerSigningKey = SecurytyKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+
+            services.AddDependencyResolvers(new Core.Utilites.Ioc.ICoreModule[] { 
+                new CoreModule()
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +75,8 @@ namespace webAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 

@@ -23,9 +23,9 @@ namespace Business.Concrate
             return new SuccesDataResult<List<Category>>(_categoryDal.GetAll());      
         }
 
-        public IDataResult<List<Category>> GetById(int categoryID)
+        public IDataResult<List<Category>> GetById(int categoryId)
         {
-            return new SuccesDataResult<List<Category>>(_categoryDal.GetAll(c => c.CategoryID == categoryID));
+            return new SuccesDataResult<List<Category>>(_categoryDal.GetAll(c => c.CategoryId == categoryId));
         }
     }
 }

@@ -24,7 +24,7 @@ namespace DataAccess.Concrate.EntityFramwork
             {
                 var result = from p in context.Products
                              join c in context.Categories
-                             on p.CategoryID equals c.CategoryID
+                             on p.CategoryId equals c.CategoryId
                              select new ProductDetailDto { ProductId = p.ProductId, ProductName = p.ProductName,
                                  CategoryName = c.CategoryName, UnitsInStock = p.UnitsInStock 
                              };

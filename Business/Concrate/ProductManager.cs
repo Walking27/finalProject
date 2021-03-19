@@ -32,7 +32,7 @@ namespace Business.Concrate
             //Aynı isimde ürün eklenemez
             //Eğer mevcut kategori sayısı 15'i geçtiyse sisteme yeni ürün eklenemez. ve 
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName),
-                CheckIfProductCountOfCategoryCorrect(product.CategoryID),CheckIfAategoryLimitExceded());
+                CheckIfProductCountOfCategoryCorrect(product.CategoryId),CheckIfAategoryLimitExceded());
 
             if (result != null)
             {
@@ -57,7 +57,7 @@ namespace Business.Concrate
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccesDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryID == id));
+            return new SuccesDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
 
         public IDataResult<Product> GetById(int productId)
@@ -83,7 +83,7 @@ namespace Business.Concrate
         private IResult CheckIfProductCountOfCategoryCorrect(int categoryId)
         {
             //Select count(*) from products where categoryId=1
-            var result = _productDal.GetAll(p => p.CategoryID == categoryId).Count;
+            var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
             if (result >= 15)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
